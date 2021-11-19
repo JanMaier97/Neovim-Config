@@ -47,6 +47,7 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 - [patched font](https://www.nerdfonts.com/font-downloads)
 - [fd](https://github.com/sharkdp/fd#installation)
 - gcc from [here](https://github.com/chawyehsu/dorado#featured-apps) / fix below
+- `npm install -g typescript typescript-language-server`
 
 ```
 scoop bucket add dorado https://github.com/chawyehsu/dorado
