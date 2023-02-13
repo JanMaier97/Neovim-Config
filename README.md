@@ -1,55 +1,30 @@
-# Neovim configuration
+# Nvim Config
 
-## Preconditions
+My custom nvim config based off of [Kickstart](https://github.com/nvim-lua/kickstart.nvim)
 
-Install scoop
-```
-iwr -useb get.scoop.sh | iex
-```
+# Installation
 
-If there is an error, try this:
-```
-Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-```
+Clone repository with `git clone https://github.com/JanMaier97/Neovim-Config.git ~/Appdata/local/nvim`
 
-Install NeoVim:
-```
-scoop install neovim
-```
+Then install build tools for certain packages:
 
-## Setup
+Treesiter installation causes some problems on windows. first try this 
+https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#msvc
 
-### Clone the repository:
-```
-git clone https://github.com/JanMaier97/Neovim-Config.git ~/Appdata/local/nvim
-```
+The install chocolatey and follow this 
+https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#troubleshooting
 
-### Download vim-plug:
 
-#### Unix, Linux
-```
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
+# Dependencies
 
-#### Windows Powershell
-```
-iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
-    ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
 
-```
+## ripgrep
+Provides better grep search functionality: https://github.com/BurntSushi/ripgrep
 
-#### Install dependencies
-- Git
-- ctags
-- make  
-- [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
-- [patched font](https://www.nerdfonts.com/font-downloads)
-- [fd](https://github.com/sharkdp/fd#installation)
-- gcc from [here](https://github.com/chawyehsu/dorado#featured-apps) / fix below
-- `npm install -g typescript typescript-language-server`
+`choco install ripgrep`
 
-```
-scoop bucket add dorado https://github.com/chawyehsu/dorado
-scoop install dorado/winlibs-mingw
-```
+
+# Links
+
+
+https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
