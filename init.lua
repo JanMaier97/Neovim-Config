@@ -1,3 +1,5 @@
+local util = require('lspconfig/util')
+
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -64,6 +66,12 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+
+  -- zen mode
+  use 'junegunn/goyo.vim'
+
+  -- line and wordwrapping for writing
+  use 'preservim/vim-pencil'
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -225,6 +233,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 -- require 'nvim-treesitter.install'.compilers = { "clang" }
+require 'nvim-treesitter.install'.compilers = { "cl" }
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'lua', 'rust', 'typescript', 'help', 'vim', 'c_sharp'},
@@ -350,6 +359,13 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
+  omnisharp  = {},
+  marksman = {
+    cmd = { "marksman", "server" },
+    filetypes = { "markdown" },
+    root_dir = { util.root_pattern(".git", ".marksman.toml")},
+    single_file_support = true
+  },
   sumneko_lua = {
     Lua = {
       workspace = { checkThirdParty = false },
